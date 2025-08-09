@@ -7,27 +7,31 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             text-align: center;
-            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         select {
             font-size: 16px;
-            padding: 5px;
-            margin-bottom: 20px;
+            padding: 8px;
+            margin: 10px auto;
+            width: 90%;
+            max-width: 400px;
         }
         iframe {
+            flex: 1;
             border: none;
             width: 100%;
-            height: 80vh;
         }
     </style>
 </head>
 <body>
 
-    <h2>Chọn Ấp để xem PDF</h2>
     <select id="apSelect" onchange="loadPDF()">
         <option value="">-- Chọn Ấp --</option>
-        <!-- Tạo Ấp 1 đến Ấp 70 -->
         <script>
             for (let i = 1; i <= 70; i++) {
                 document.write(`<option value="ap${i}.pdf">Ấp ${i}</option>`);
@@ -43,7 +47,7 @@
             const pdfFile = select.value;
             const viewer = document.getElementById("pdfViewer");
             if (pdfFile) {
-                viewer.src = `pdf/${pdfFile}`;
+                viewer.src = `pdf/${pdfFile}#toolbar=0&view=FitH`;
             } else {
                 viewer.src = "";
             }
