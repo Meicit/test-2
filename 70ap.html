@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Xem PDF theo Ấp</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 20px;
+      background: #f2f2f2;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #ccc;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Chọn Ấp để xem tài liệu PDF</h2>
+
+  <select id="apSelect" onchange="loadPDF()">
+    <option value="">-- Chọn Ấp --</option>
+    <option value="ap1.pdf">Ấp 1</option>
+    <!-- Bạn có thể thêm các Ấp khác nếu cần -->
+  </select>
+
+  <div id="pdfContainer" style="margin-top: 20px;">
+    <iframe id="pdfViewer" src="" style="display: none;"></iframe>
+  </div>
+
+  <script>
+    function loadPDF() {
+      const select = document.getElementById("apSelect");
+      const pdfViewer = document.getElementById("pdfViewer");
+
+      if (select.value) {
+        pdfViewer.src = select.value;
+        pdfViewer.style.display = "block";
+      } else {
+        pdfViewer.src = "";
+        pdfViewer.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
