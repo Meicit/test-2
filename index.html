@@ -1,56 +1,54 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Xem PDF theo Ấp</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 20px;
-      background: #f2f2f2;
-    }
-    select {
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: 1px solid #ccc;
-      background: white;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Ấp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        select {
+            font-size: 16px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 80vh;
+        }
+    </style>
 </head>
 <body>
 
-  <h2>Chọn Ấp để xem tài liệu PDF</h2>
+    <h2>Chọn Ấp để xem PDF</h2>
+    <select id="apSelect" onchange="loadPDF()">
+        <option value="">-- Chọn Ấp --</option>
+        <!-- Tạo Ấp 1 đến Ấp 70 -->
+        <script>
+            for (let i = 1; i <= 70; i++) {
+                document.write(`<option value="ap${i}.pdf">Ấp ${i}</option>`);
+            }
+        </script>
+    </select>
 
-  <select id="apSelect" onchange="loadPDF()">
-    <option value="">-- Chọn Ấp --</option>
-    <option value="ap1.pdf">Ấp 1</option>
-    <!-- Bạn có thể thêm các Ấp khác nếu cần -->
-  </select>
+    <iframe id="pdfViewer"></iframe>
 
-  <div id="pdfContainer" style="margin-top: 20px;">
-    <iframe id="pdfViewer" src="" style="display: none;"></iframe>
-  </div>
-
-  <script>
-    function loadPDF() {
-      const select = document.getElementById("apSelect");
-      const pdfViewer = document.getElementById("pdfViewer");
-
-      if (select.value) {
-        pdfViewer.src = select.value;
-        pdfViewer.style.display = "block";
-      } else {
-        pdfViewer.src = "";
-        pdfViewer.style.display = "none";
-      }
-    }
-  </script>
+    <script>
+        function loadPDF() {
+            const select = document.getElementById("apSelect");
+            const pdfFile = select.value;
+            const viewer = document.getElementById("pdfViewer");
+            if (pdfFile) {
+                viewer.src = `pdf/${pdfFile}`;
+            } else {
+                viewer.src = "";
+            }
+        }
+    </script>
 
 </body>
 </html>
